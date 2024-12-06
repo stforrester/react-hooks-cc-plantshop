@@ -3,7 +3,8 @@ import React, { useState } from "react";
 function PlantCard({
   src="https://via.placeholder.com/400",
   name="plant name",
-  price="plant price" 
+  price="plant price",
+  handleDelete
   })
   { 
     const [stock, setStock] = useState(true)
@@ -30,6 +31,8 @@ function PlantCard({
             </>
           ) : (null)}
         </span>
+        <div></div>
+        <button className="primary" onClick={() => handleDelete(name)}>Delete Plant</button>
       </li>
     );
 }
