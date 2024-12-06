@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList() {
-
-  const [plants, setPlants] = useState([]);
+function PlantList({ plants, setPlants }) {
 
   useEffect(() => {
     fetch("http://localhost:6001/plants")
@@ -12,7 +10,7 @@ function PlantList() {
         setPlants(data)
       })
       .catch(error => console.error(error))
-  })
+  }, [setPlants])
 
   const plantCardsDisplay = plants.map((plant) => (
     <PlantCard key={plant.id} src={plant.image} name={plant.name} price={plant.price} />
