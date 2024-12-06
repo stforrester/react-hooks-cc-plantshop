@@ -12,15 +12,15 @@ function PlantList({ plants, setPlants, searchQuery }) {
       .catch(error => console.error(error))
   }, [setPlants])
 
-  function handleDelete(nameInput) {
-    const newPlantArray = plants.filter((plant) => plant.name !== nameInput);
+  function handleDelete(plantId) {
+    const newPlantArray = plants.filter((plant) => plant.id !== plantId);
     setPlants(newPlantArray);
   }
 
   const filteredPlants = plants.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
   const plantCardsDisplay = filteredPlants.map((plant) => (
-      <PlantCard key={plant.id} src={plant.image} name={plant.name} price={plant.price} handleDelete={handleDelete} />
+      <PlantCard key={plant.id} id={plant.id} src={plant.image} name={plant.name} price={plant.price} handleDelete={handleDelete} />
     ))
 
   return (

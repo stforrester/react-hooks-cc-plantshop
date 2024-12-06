@@ -4,6 +4,7 @@ function PlantCard({
   src="https://via.placeholder.com/400",
   name="plant name",
   price="plant price",
+  id,
   handleDelete
   })
   { 
@@ -32,7 +33,7 @@ function PlantCard({
           ) : (null)}
         </span>
         <div></div>
-        <button className="primary" onClick={() => handleDelete(name)}>Delete Plant</button>
+        <button className="primary" onClick={() => handleDelete(id)}>Delete Plant</button>
       </li>
     );
 }
