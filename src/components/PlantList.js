@@ -13,8 +13,13 @@ function PlantList({ plants, setPlants, searchQuery }) {
   }, [setPlants])
 
   function handleDelete(plantId) {
-    const newPlantArray = plants.filter((plant) => plant.id !== plantId);
-    setPlants(newPlantArray);
+    fetch(`http://localhost:6001/plants/${plantId}`,{
+      method: "DELETE",
+    })
+    .then(() => {
+      setPlants((previousPlants) => previousPlants.filter((plant) => plant.id !== plantId));
+    })
+    .catch(error => console.error(error))
   }
 
   const filteredPlants = plants.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
