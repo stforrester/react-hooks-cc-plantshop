@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList({ plants, setPlants }) {
+function PlantList({ plants, setPlants, searchQuery }) {
 
   useEffect(() => {
     fetch("http://localhost:6001/plants")
@@ -12,9 +12,11 @@ function PlantList({ plants, setPlants }) {
       .catch(error => console.error(error))
   }, [setPlants])
 
-  const plantCardsDisplay = plants.map((plant) => (
-    <PlantCard key={plant.id} src={plant.image} name={plant.name} price={plant.price} />
-  ))
+  const filteredPlants = plants.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
+
+  const plantCardsDisplay = filteredPlants.map((plant) => (
+      <PlantCard key={plant.id} src={plant.image} name={plant.name} price={plant.price} />
+    ))
 
   return (
     <ul className="cards">
